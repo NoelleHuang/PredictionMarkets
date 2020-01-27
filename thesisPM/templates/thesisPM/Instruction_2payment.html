@@ -1,0 +1,27 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+    Instruction: payment
+{% endblock %}
+
+{% block content %}
+
+<p>
+   Remember, your understanding of the game and your decisions will affect your payment at the end of the experiment. 
+   So to ensure a good amount of payment for you, and data accuracy for the researchers, you should
+   carefully read and understand the rules of the game.
+</p>
+
+<p>
+    In each session, your group will face a series of prediction tasks (example below) and each of you will
+take turn to place bets on the respective answers. For each question, you will be given a certain amount of
+ShruteBuck as currency in this experiment. You may also be given some hints to be used at your disposal;
+hints received are not to be shared with anyone else. Your ShruteBuck balance at the end of each session
+will be recorded and added to your account, and later will be used to calculate your cash payment at the end of the experiment. 
+Your ShruteBuck balance will then be reset for the next session.
+</p>
+
+    {% next_button %}
+
+{% endblock %}

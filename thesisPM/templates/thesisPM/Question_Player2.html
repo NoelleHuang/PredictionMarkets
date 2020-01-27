@@ -1,0 +1,36 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Question
+{% endblock %}
+
+{% block content %}
+
+<p>
+This is round {{ player.subsession.round_number }}, the order is {{player.group.alias_assignment }}. You are {{ player.role }}, so you are # {{ player.id_in_group }} to go. 
+</p>    
+
+<p>
+(Description of Question)
+</p>
+
+<p>
+Priavte signal: (display private signal at player level)
+</p>
+
+<p>
+History: (dynamic)
+</p>
+
+
+<p>
+The current price of "Yes" is {{group.yes_price}} per share, {% formfield player.yes_share label="Please input the number of shares you want to purchase:" %}
+The current price of "No" is {{group.no_price}} per share, {% formfield player.no_share label="Please input the number of shares you want to purchase:" %}    
+</p>
+
+{% next_button %}
+
+{% endblock %}
+
+

@@ -1,0 +1,23 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Balance
+{% endblock %}
+
+{% block content %}
+<p>At the beginning of each question, you will be given a certain amount of ShruteBuck endowment, which will
+    be used to buy “YES” or “NO” tokens. Each token will pay 1 ShruteBuck (or $1 for short) if it matches the
+    outcome/answer of the question, and will pay $0 when it doesn’t match. </p>
+    
+<p>For example, if you have 10 “YES” tokens and 19 “NO” tokens when the question is resolved, then you will have $10 added to your account if
+    the outcome is “YES”; otherwise, you will have $19 added to your account for “NO”
+    Tokens cost ShruteBucks to purchase, and, at any point, the value (number*price) of tokens purchased
+    must not exceed your ShruteBuck balance. You can decide the type of tokens to purchase, and the number
+    of each type of tokens to purchase; however, you cannot decide the prices of each type of tokens.</p>    
+
+(take some screenshot)
+
+    {% next_button %}
+
+{% endblock %}

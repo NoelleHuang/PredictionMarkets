@@ -1,0 +1,30 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Balance
+{% endblock %}
+
+{% block content %}
+<p>In each question, prices for tokens are determined by an algorithm. The prices are affected by tokens
+    purchased by characters; the current prices will always be displayed to all participants. As illustrated in the
+    example below, the current price for a “YES” token is $0.6 and the current price for a “NO” token is $0.46.
+    When it is your turn, you will decide whether you want to buy, and at what volumes, each type of token.
+    Notice that all characters in your group will be able to see the prices and numbers of tokens you purchase.
+</p>
+
+<p>Each question/prediction task will resemble the one given in example below; the order assignment associated
+    with each question will also be displayed. The outcome will be determined by computer randomly before
+    the first character acts. Of course, the outcome will not be revealed to you until the question is resolved–
+    meaning that the outcome will be revealed to all participants. Remember, the outcome and the tokens you
+    own will jointly determine your payoff at the end of the experiment.
+    You may receive hints as is displayed in the example below; similarly, other characters may receive a
+    hint that resembles the one displayed to you, but contains different information. For example, Dwight may
+    receive a hint that reads “There is a 20% chance that the color is black”. You may use this hint at your
+    disposal. NEVER share this hint with other participants in the lab.</p>
+
+(take some screenshot)
+
+    {% next_button %}
+
+{% endblock %}
