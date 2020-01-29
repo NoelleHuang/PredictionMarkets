@@ -20,11 +20,11 @@ def calculate_price(existing_contract, new_contract):
     liquidity = Constants.liquidity
     price = (liquidity*np.log(np.exp(new_contract[0]/liquidity)+np.exp(new_contract[1]/liquidity))-liquidity*np.log(np.exp(existing_contract[0]/liquidity)+np.exp(existing_contract[1]/liquidity)))
 
-    print(existing_contract, new_contract, price)
+    #print(existing_contract, new_contract, price)
 
     return price
 
-author = 'Your name here'
+author = 'Noelle Huang'
 
 doc = """
 Your app description

@@ -13,7 +13,6 @@ def update_balances(group):
                 old_existing_shares = get_existing_contract(group) - their_shares
                 player.balance -= calculate_price(old_existing_shares, their_shares)
 
-
 class Instruction_0welcome(Page):
     def is_displayed(self):
         return self.round_number==1
