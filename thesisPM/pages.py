@@ -4,12 +4,14 @@ from ._builtin import Page, WaitPage
 from .models import Constants, calculate_price, get_existing_contract
 import numpy as np
 
+
+
 def update_balances(group):
     for player in group.get_players():
         if player.balance == Constants.round_initial_balance:
-            share = max(player.yes_share, player.no_share)
+            share = max(player.Red_share, player.Green_share)
             if share > 0:
-                their_shares = np.array([player.yes_share, player.no_share])
+                their_shares = np.array([player.Red_share, player.Green_share])
                 old_existing_shares = get_existing_contract(group) - their_shares
                 player.balance -= calculate_price(old_existing_shares, their_shares)
 
@@ -51,24 +53,25 @@ class Instruction_8orderAssignment(Page):
 
 # round introduction, display only once at the beginning of each round
 # reminds random group shuffling each round 
-# (later when both ordered and unordered are implemented, explains ordered or unordered rules)
+# (later when both ordered and uGreenrdered are implemented, explains ordered or uGreenrdered rules)
 class Introduction_Round(Page):
     pass 
 
 class Question_Player1 (Page):
     form_model = 'player'
-    form_fields = ['yes_share','no_share']
+    form_fields = ['Red_share','Green_share']
 
     def is_displayed(self):
    #     update_balances(self.player.group)
        return self.player.id_in_group == 1
 
     def before_next_page(self):
-        print('before next page')
+        #print('before next page')
         update_balances(self.player.group)
+
         
 
-class WaitForP11 (WaitPage):
+class WaitForP1 (WaitPage):
 
     form_fields = ['balance']
 
@@ -80,7 +83,7 @@ class WaitForP11 (WaitPage):
 class Question_Player2 (Page):
     
     form_model = 'player'
-    form_fields = ['yes_share','no_share']
+    form_fields = ['Red_share','Green_share']
 
     def is_displayed(self):
         update_balances(self.player.group)
@@ -97,13 +100,12 @@ class WaitForP2 (WaitPage):
         update_balances(self.player.group)
         return self.player.id_in_group != 2
     def before_next_page(self):
-        print('now')
         update_balances(self.player.group)
 
 class Question_Player3 (Page):
     
     form_model = 'player'
-    form_fields = ['yes_share','no_share']
+    form_fields = ['Red_share','Green_share']
 
     def is_displayed(self):
         update_balances(self.player.group)
@@ -120,7 +122,6 @@ class WaitForP3 (WaitPage):
         update_balances(self.player.group)
         return self.player.id_in_group != 3
     def before_next_page(self):
-        print('now')
         update_balances(self.player.group)
         
 class ResultsWaitPage(WaitPage):
@@ -136,13 +137,13 @@ class Results(Page):
     pass
 
 
-page_sequence = [Instruction_0welcome, # Instruction_1players, Instruction_2payment, Instruction_3interface, Instruction_4characters, Instruction_5balance, Instruction_6prices, Instruction_7questionsHints, Instruction_8orderAssignment,
-                 Question_Player1, 
-                 WaitForP11, 
-                 Question_Player2, 
-                 WaitForP2,
-                 Question_Player3, 
-                 WaitForP3,
+page_sequence = [Instruction_0welcome, #Instruction_1players, Instruction_2payment, Instruction_3interface, Instruction_4characters, Instruction_5balance, Instruction_6prices, Instruction_7questionsHints, Instruction_8orderAssignment,
+                 #Question_Player1, 
+                 #WaitForP1, 
+                 #Question_Player2, 
+                 #WaitForP2,
+                 #Question_Player3, 
+                 #WaitForP3,
                  ResultsWaitPage, 
                  Results
                  ]

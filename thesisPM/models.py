@@ -12,6 +12,7 @@ from otree.api import (
 import random
 import numpy as np
 
+
 def calculate_price(existing_contract, new_contract):
     new_contract = np.array(new_contract, dtype=float)
     existing_contract = np.array(existing_contract, dtype=float)
@@ -24,6 +25,7 @@ def calculate_price(existing_contract, new_contract):
 
     return price
 
+
 author = 'Noelle Huang'
 
 doc = """
@@ -34,22 +36,52 @@ Your app description
 class Constants(BaseConstants):
     name_in_url = 'Prediction_Markets'
     players_per_group = 3
-    num_rounds = 2
+    num_rounds = 10
     round_initial_balance = 10
     liquidity = 1
+
+    possible_states = ['Red', 'Green']
+    signal_accuracy = 2/3
+    random.seed (11)
+    
 
     instructions_template = 'thesisPM/instructions.html'
 
 
 class Subsession(BaseSubsession):
+    true_state = models.StringField()
+    signal_assignment = models.StringField()     
+    
+    def assign_signal(self):
+        signals = []
+        if self.true_state == Constants.possible_states[0]:
+            signals = np.random.choice(Constants.possible_states,Constants.players_per_group,p=[1-Constants.signal_accuracy,Constants.signal_accuracy])
+        else:
+             signals = np.random.choice(Constants.possible_states,Constants.players_per_group,p=[Constants.signal_accuracy,1-Constants.signal_accuracy])
+        
+        for p in self.get_players():
+            p.private_signal = signals[p.id_in_group-1]
+
+        self.signal_assignment = ', '.join(signals)
+
+
+
     def creating_session(self):
         self.group_randomly()
+        self.true_state = random.choice(Constants.possible_states)
+        self.assign_signal()
+
+        
+        print (self.signal_assignment)
+    
+
 
 class Group(BaseGroup):
+
     alias_assignment = models.StringField
     alias_string = models.StringField
-    yes_price = models.FloatField(initial=0.5) # yes price = 0.8
-    no_price = models.FloatField(initial=0.5) # no price = x, where x is the price of a unit of "no" at the time of decision
+    Red_price = models.FloatField(initial=0.5) 
+    Green_price = models.FloatField(initial=0.5) 
 
     # New groups keep getting created even when new subsessions are not. dafuq
     def __init__(self, *args, **kwargs):
@@ -58,43 +90,58 @@ class Group(BaseGroup):
         self.alias_assignment = np.random.permutation(['Dwight','Michael','Jim'])
         self.alias_string = ', '.join(self.alias_assignment)
 
-    total_yes_so_far = models.FloatField(initial = 0.0)
-    totall_no_so_far = models.FloatField(initial = 0.0)
-
 def get_existing_contract(group):
-    yes = 0
-    no = 0
+        Red = 0
+        Green = 0
 
-    for player in group.get_players():
-        yes += player.yes_share
-        no += player.no_share
+        for player in group.get_players():
+            Red += player.Red_share
+            Green += player.Green_share
     
-    print(np.array([yes,no]))
-    return np.array([yes,no])
+        #print(np.array([Red,Green]))
+        return np.array([Red,Green])
 
 class Player(BasePlayer):
-    private_signal = models.FloatField()
-    trade_order = models.IntegerField()
+
+    private_signal = models.StringField()
     
-    # record player's activities in the experiment; unless specified, default input in the field is "None"
-    # for instance, in first session, player purchases 5 tokens of "yes" at current price of $0.8, but did not purchase any "no" tokens, this will be recorded as...
-    yes_share = models.FloatField(initial=0.0) # yes share = 5.0
-    no_share = models.FloatField(initial=0.0, label="# of No to purchase") # no share = 0.0
+    Red_share = models.FloatField(initial=0.0) 
+    Green_share = models.FloatField(initial=0.0) 
     balance = models.FloatField(initial=Constants.round_initial_balance)
 
-    def yes_share_choices(self):
+    def role(self):
+        return self.group.alias_assignment[self.id_in_group - 1]
+
+    def Red_share_choices(self):
         options = []
         existing = get_existing_contract(self.group)
         unit = np.array([1, 0], dtype=int) 
         k = np.array(unit)   
+
         while calculate_price(existing, k) < self.balance:
-            print(k)
-            options.append([sum(k),'{} for ${}'.format(sum(k), calculate_price(existing, k))])
-            k+=unit
+             options.append([sum(k),'{} for ${}'.format(sum(k), calculate_price(existing, k))])
+            # to display 3 decimal float, uncomment this line
+            #options.append([sum(k),'{} for ${:.3f}'.format(sum(k), calculate_price(existing, k))])
+             k+=unit
+
+        options.insert(0, [0, 'None'])
+        return options
+    
+    def Green_share_choices(self):
+        options = []
+        existing = get_existing_contract(self.group)
+        unit = np.array([0, 1], dtype=int) 
+        k = np.array(unit)   
+        while calculate_price(existing, k) < self.balance:
+             options.append([sum(k),'{} for ${}'.format(sum(k), calculate_price(existing, k))])
+            # to display 3 decimal float, uncomment this line
+            #options.append([sum(k),'{} for ${:.3f}'.format(sum(k), calculate_price(existing, k))])
+             k+=unit
+            #print("{:.2f}".format())
 
         options.insert(0, [0, 'None'])
 
         return options
 
-    def role(self):
-        return self.group.alias_assignment[self.id_in_group - 1]
+    def calculate_cost(self): 
+        return Constants.round_initial_balance - self.balance

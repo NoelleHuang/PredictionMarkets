@@ -8,29 +8,61 @@
 {% block content %}
 
 <p>
-This is round {{ player.subsession.round_number }}, the order is {{player.group.alias_assignment }}. You are {{ player.role }}, so you are # {{ player.id_in_group }} to go. 
+This is round {{ player.subsession.round_number }}, the order is {{player.group.alias_string }}. You are {{ player.role }}, so you are # {{ player.id_in_group }} to go. 
 </p>    
 
 <p>
-(Description of Question)
+There are two urns-- urn A and urn B, and in each urn there are exactly 3 balls. In urn A, there are 2 red balls and 1 green ball; in urn B, there are 1 red ball and 2 green balls. 
+Now one of urn A and urn B is randomly selected, each of equal chance, and a ball is drawn from the selected urn, what color would the ball be?  
 </p>
 
 <p>
-Priavte signal: (display private signal at player level)
+Rumour: If the drawn ball is put back to the selected urn, and draw another ball from the same urn, the color of the ball will be {{ player.private_signal}}.
 </p>
 
 <p>
 History: 
+
+{% for p in group.get_players%}
+{% if player.id_in_group > p.id_in_group %}
+<p>{{ p.role}} has purchased {{ p.Red_share }} share(s) of "Red" and {{p.Green_share}} share(s) of "Green", at cost of {{p.calculate_cost}}</p>
+{% endif %}
+{% endfor %}
+
 </p>
 
 
-<p>
-The current price of "Yes" is {{group.yes_price}} per share, {% formfield player.yes_share label="Please input the number of shares you want to purchase:" %}
-The current price of "No" is {{group.no_price}} per share, {% formfield player.no_share label="Please input the number of shares you want to purchase:" %}    
-</p>
+<style>
+.dropDown { display:none; }
+</style>
+
+<input type="radio" value="Red_share" class="radioSelect"> Red<br>
+<input type="radio" value="Green_share" class="radioSelect">Green<br>
+
+<div name="Red_share" id="yes_share" class="dropDown">
+    {% formfield player.Red_share %}
+</div>
+
+<div name="Green_share" id="green_share" class="dropDown">
+    {% formfield player.Green_share %}
+</div>
+
+
+
+<script type="text/javascript">
+    
+    $(".radioSelect").click(function() {
+        $(".dropDown").hide();
+        $("[name='"+$(this).val()+"'").show();
+        return false;
+    });
+
+ 
+</script>
+
 
 {% next_button %}
+{{ form.Red_share.errors }}
+{{ form.Green_share.errors }}
 
 {% endblock %}
-
-
