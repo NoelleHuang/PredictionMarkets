@@ -1,0 +1,22 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+    Instruction: Players
+{% endblock %}
+
+{% block content %}
+
+<h3>Groups</h3>
+<p>This experiment will be consisted of {{Constants.num_rounds}} sessions. In each session, you will be randomly assigned into a group of {{ Constants.players_per_group }}. Each of you will be randomly assigned a fictious character, and you will only be known to others in the group as your character’s name. You will only play one character in each session; however, you may play different characters in different sessions.</p>
+
+<h3>Michael</h3>
+<p>All players in the group will face the same prediction task. Each player within the group will take turns to place a bet. In particular, the character Michael always has a special power-- to decide who moves in what order in each group. We will elaborate Michael's special power shortly.</p>   
+
+<h3>Example</h3>
+<p>For example, you may play character Michael in session 2, and character Jim in session 3; similarly,throughout session 2, the character Dwight will be played by one participant, and throughout session 3, the character Dwight may be played by another participant.</p>
+
+
+    {% next_button %}
+
+{% endblock %}

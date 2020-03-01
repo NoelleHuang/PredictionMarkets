@@ -1,0 +1,18 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Round results: your balance is {{ player.balance}} and the true state is {{ subsession.true_state}}. If this round is selected as the payoff round, you will receive payoff of {{player.payoff}}.
+{% endblock %}
+
+{% block content %}
+
+Activity history:
+{% for p in group.get_players%}
+<p>{{ p.role}} has purchased {{ p.Red_share }} share(s) of "Red" and {{p.Green_share}} share(s) of "Green", at cost of {{p.calculate_cost}}</p>
+{% endfor %}
+</p>
+{% next_button %}
+{% endblock %}
+
+

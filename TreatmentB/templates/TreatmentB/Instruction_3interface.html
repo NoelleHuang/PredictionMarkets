@@ -1,0 +1,21 @@
+<style>
+img {
+    box-shadow: 10px 10px 5px grey;
+    } 
+  </style>
+
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Interface
+{% endblock %}
+
+{% block content %}
+<p>Below is the interface you will see on your screen after the experiment begins.</p>
+
+<img src="https://imgur.com/6Lx4TrU.jpg" width="1000px" />
+
+{% next_button %}
+<p>(If the image is not loading properly, please right click on the image icon, and select "Open Image in New Tab".)</p>
+{% endblock %}

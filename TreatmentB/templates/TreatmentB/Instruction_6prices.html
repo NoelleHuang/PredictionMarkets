@@ -1,0 +1,20 @@
+<style>
+    img {
+        box-shadow: 10px 10px 5px grey;
+        } 
+      </style>
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Prices
+{% endblock %}
+
+{% block content %}
+<p>In each round, prices for any bets are determined by an algorithm. The prices are affected by bets placed by players that have their turn before you. If you pay attention, you may notice the pattern in which the prices are changing, and use this information to your advantage. The current prices will always be displayed to everyone in your group. As illustrated in the example below, when you click on a color, you will see a dropdown menu which displays the prices for different shares of that color.  Notice that all characters in your group will be able to see your bets. </p>
+<img src="https://imgur.com/6Lx4TrU.jpg" width="1000px" />
+
+
+{% next_button %}
+<p>(If the image is not loading properly, please right click on the image icon, and select "Open Image in New Tab".)</p>
+{% endblock %}

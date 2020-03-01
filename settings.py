@@ -12,17 +12,27 @@ SESSION_CONFIG_DEFAULTS = dict(
 
 SESSION_CONFIGS = [
     dict(
-        name='thesisPM',
-        display_name="Prediction Markets",
+        name='TreatmentAB',
+        display_name="Testing(Combo 1)",
         num_demo_participants = 3,
-        app_sequence=['thesisPM', 'payment_info'],
+        num_rounds = 3,
+        liquidity = 1,
+        app_sequence=['TreatmentA','TreatmentB', 'payment_info'],
     ),
     dict(
-        name='common_value_auction', 
-        display_name="Common Value Auction", 
+        name='TreatmentBA', 
+        display_name="Testing(Combo 2)", 
         num_demo_participants=3,
-        app_sequence=['common_value_auction', 'payment_info'],
+        app_sequence=['TreatmentB', 'TreatmentA', 'payment_info'],
+        liquidity = 1,
+        num_rounds = 3,
 ),
+    #dict(
+    #    name='common_value_auction', 
+    #    display_name="Common Value Auction", 
+    #    num_demo_participants=3,
+    #    app_sequence=['common_value_auction', 'payment_info'],
+#),
 ]
 
 # ISO-639 code
@@ -31,7 +41,7 @@ LANGUAGE_CODE = 'en'
 
 # e.g. EUR, GBP, CNY, JPY
 REAL_WORLD_CURRENCY_CODE = 'USD'
-USE_POINTS = True
+USE_POINTS = False
 
 ROOMS = [
     dict(

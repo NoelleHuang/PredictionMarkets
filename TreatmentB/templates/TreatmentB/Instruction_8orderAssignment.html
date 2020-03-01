@@ -1,0 +1,22 @@
+<style>
+    img {
+        box-shadow: 10px 10px 5px grey;
+        } 
+</style>
+
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Order Assignment
+{% endblock %}
+
+{% block content %}
+
+<p>Character Michael always comes with special power-- he can decide of all characters in his group, who goes first, second, and etc. Whenever a player is assigned to play the character Michael, the player will be prompted to, first, submit the order assignment and then, according to the order assignment, submit prediction at the corresponding turn. </p>
+    
+    <img src="https://imgur.com/6Lx4TrU.jpg" width="1000px" />
+
+    {% next_button %}
+    <p>(If the image is not loading properly, please right click on the image icon, and select "Open Image in New Tab".)</p>
+{% endblock %}

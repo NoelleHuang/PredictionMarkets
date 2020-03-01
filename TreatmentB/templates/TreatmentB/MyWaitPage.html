@@ -1,0 +1,153 @@
+{% extends 'otree/WaitPage.html' %}
+{% load otree %}
+{% block title %}Waiting for other players...{% endblock %}
+{% block content %}
+    While waiting for other players, you can review the instruction by clicking on bottons below. 
+
+<span class="border-0">
+    <div class="accordion" id="accordionExample">
+        <div class="card shadow-none">
+            <div class="card-header shadow-none" id="headingOne">
+                <h2><button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                    Overview
+                    </button>
+                </h2>
+          </div>
+      
+          <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div class="card-body shadow-none">
+                    <p>In this experiment, you will face a sequence of economic games. These games will involve luck and decision making from you. At the end of the experiment, you will collect your $5 show up fee. In addition, you will receive extra cash payment (average of $25), and the exact amount will be determined by your decisions and outcomes of the games. </p>
+                    <p>The researchers of this experiment will collect anonymised data from all experiment participants. We value your privacy deeply, so your identity will be protected throughout this experiment and data analysis. In other words, you will be only known as participant x to the experimenters. At the same time, please DO NOT communicate with other participants in the room.</p>
+                </div>
+          </div>
+        </div>
+</span>
+
+        <div class="card">
+          <div class="card-header" id="headingTwo">
+                <h2>
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Players
+                    </button>
+                </h2>
+          </div>
+
+          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                <div class="card-body">
+                    <p>This experiment will be consisted of {{Constants.num_rounds}} sessions. In each session, you will be randomly assigned into a group of {{ Constants.players_per_group }}. Each of you will be randomly assigned a fictious character, and you will only be known to others in the group as your character’s name. You will only play one character in each session; however, you may play different characters in different sessions.</p>
+                    <p>For example, you may play character Michael in session 2, and character Jim in session 3; similarly,throughout session 2, the character Dwight will be played by one participant, and throughout session 3, the character Dwight may be played by another participant.</p>   
+                    <p>All players in the group will face the same prediction task. Each player within the group will take turns to place a bet. In particular, the character Michael always has a special power-- to decide who moves in what order in each group. We will elaborate Michael's special power shortly.</p>
+                </div>
+          </div>
+        </div>
+
+
+        <div class="card">
+          <div class="card-header" id="headingThree">
+                <h2 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                         Payment
+                    </button>
+                </h2>
+          </div>
+
+          <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                <div class="card-body">
+                    <p>Remember, your understanding of the game and your decisions will affect your payment at the end of the experiment. So to ensure a good amount of payment for you, and data accuracy for the researchers, you should carefully read and understand the rules of the game.</p>
+                    <p>In the beginning of each session, you will have an initial balance of $10 ShruteBucks, the currency of this experiment. Detailed description regarding your Shrutebucks balance will be explained shortly. Your ShruteBucks balance at the end of each session directly affects payment you will receive at the end of the experiment. Specifically, the computer will randomly select two sessions as your payment sessions. Your ShruteBucks balances in payment sessions will be directly converted into your final payment in Canadian Dollars. Keep in mind that your payments will be determined by your decisions; so the more correct bets you make, the higher your payments will be. It is always in your interest to bet on outcomes that you deem likely, to increase your chance of receiving high payment in the end.</p>
+
+                </div>
+          </div>
+        </div>
+      
+
+        <div class="card">
+          <div class="card-header" id="headingFour">
+                <h2 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                        Characters
+                    </button>
+                </h2>
+          </div>
+
+          <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
+                <div class="card-body">
+                    <p>In each section, you will be randomly assigned a character. In the example below, you will be Jim throughout session 1; similarly, Michael will be played by another participant in your group throughout session 1, and the same holds for other characters. For each question, all {{ Constants.players_per_group}} characters in your group will have a chance to place their bets in a sequential manner. Specifically, for each question, an order assignment will be generated by character Michael-- which determines who goes first, second, etc. In the example below, you are # 2 in the queue for this question; you will be able to submit your decision after the first player has submitted a decision.</p>
+                </div>
+          </div>
+        </div>
+
+    
+        <div class="card">
+            <div class="card-header" id="headingFive">
+                <h2 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                        Balance
+                    </button>
+                </h2>
+            </div>
+
+            <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
+                <div class="card-body">
+                    <p>At the beginning of each session, everyone in your group will be given the same amount (ten) of ShruteBucks as initial balance. You will use ShruteBucks to place bets. At the end of each session, your ShruteBuck balance will be recorded, and then reset for the next session. </p>
+                    <p>For each prediction task, you can only select one color to bet on (Green or Red). In addition, you can choose the size of your bet (1 share, 2 shares, etc.) and you will be shown the respective prices. Before you submit your bets, you will have access to the price of all potential bets in ShruteBucks.</p>
+                    <p> If your bet matches the outcome, you will receive 1 ShruteBuck for every share you have. For example, if the outcome is red in a session, then you will receive 1 ShruteBuck if you have 1 share of red, 2 ShruteBucks if you have 2 shares of red in this session; however, you will receive 0 ShruteBuck for any amount of green shares in this session. </p>
+                </div>
+            </div>
+         
+        </div>
+
+        <div class="card">
+                <div class="card-header" id="headingSix">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                         Prices
+                        </button>
+                    </h2>
+                </div>
+
+                <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <p>In each round, prices for any bets are determined by an algorithm. The prices are affected by bets placed by players that have their turn before you. If you pay attention, you may notice the pattern in which the prices are changing, and use this information to your advantage. The current prices will always be displayed to everyone in your group. As illustrated in the example below, when you click on a color, you will see a dropdown menu which displays the prices for different shares of that color.  Notice that all characters in your group will be able to see your bets. </p>
+                    </div>
+                </div>
+        </div>
+    
+        <div class="card shadow-none">
+            <div class="card-header" id="headingSeven">
+              <h2 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                        Questions and Hints
+                    </button>
+               </h2>
+            </div>
+
+          <div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#accordionExample">
+                <div class="card-body">
+                    <p>Everyone in your group will face the same prediction task. At the beginning of each session, you will receive a clear description of the prediction tasks-- including context of the prediction task, possible outcomes etc. In addition, each of you will receive a rumour about the outcome of the event. Each prediction task will resemble the one given in example below. The outcome will be determined by computer randomly before the first character places the bet. Of course, the outcome will not be revealed until the end of the experiment.  </p>
+                    <p> You may also observe decisions made by other players in your group before you submit your predictions. In addition, you will receive information relevant to the prediction task, which is called a "rumour". This resembles "rumours" in our daily life, in the sense that it contains relevant information about the outcome, but they are not always correct about the outcomes. For each piece of rumour, you will be told exactly the generating process, from which you can infer relevant information and use that to your advantage. Remember that others will also receive similar rumours as yours; if you pay attention to other players' decisions, you may be able to infer information useful to help you make better predictions. Lastly, we want to stress that rumours in this experiment are not meant to be deceptive or inaccurate in this experiment.</p>
+                </div>
+           </div>
+      </div>
+
+   
+    <div class="card">
+        <div class="card-header" id="headingEight">
+          <h2 class="mb-0">
+                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                    Order Assignment
+                </button>
+          </h2>
+        </div>
+
+        <div id="collapseSeven" class="collapse" aria-labelledby="headingEight" data-parent="#accordionExample">
+            <div class="card-body">
+                <p>Character Michael always comes with special power-- he can decide of all characters in his group, who goes first, second, and etc. Whenever a player is assigned to play the character Michael, the player will be prompted to, first, submit the order assignment and then, according to the order assignment, submit prediction at the corresponding turn. </p>
+            </div>
+        </div>
+      
+    </div>
+
+
+{% endblock %}
+

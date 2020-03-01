@@ -1,0 +1,19 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+
+{% block title %}
+    Welcome!
+{% endblock %}
+
+
+{% block content %}
+
+<p>In this experiment, you will face a sequence of economic games. These games will involve luck and decision making from you. At the end of the experiment, you will collect your $5 show up fee. In addition, you will receive extra cash payment (average of $25), and the exact amount will be determined by your decisions and outcomes of the games. </p>
+
+<h3>Privacy</h3>
+<p>The researchers of this experiment will collect anonymised data from all experiment participants. We value your privacy deeply, so your identity will be protected throughout this experiment and data analysis. In other words, you will be only known as participant x to the experimenters. At the same time, please DO NOT communicate with other participants in the room.</p>
+
+    {% next_button %}
+
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+
+
+
+
+{% block title %}
+    Question
+{% endblock %}
+
+{% block content %}
+
+
+<p>
+This is round {{ player.subsession.round_number }}, and you are {{player.role}}. Please submit your order assignment, which determines the order in which all players will move in this round.
+</p>    
+
+{% formfield group.Michael_index label="Michael" %}
+{% formfield group.Dwight_index label="Dwight" %}
+{% formfield group.Jim_index label="Jim" %}
+
+{% next_button %}
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "global/Page.html" %}
+{% load otree %}
+
+{% block title %}
+    Instruction: payment
+{% endblock %}
+
+
+{% block content %}
+
+<p>Remember, your understanding of the game and your decisions will affect your payment at the end of the experiment. So to ensure a good amount of payment for you, and data accuracy for the researchers, you should carefully read and understand the rules of the game.</p>
+
+<h3>ShruteBucks</h3>
+<p>In the beginning of each session, you will have an initial balance of $10 ShruteBucks, the currency of this experiment. Detailed description regarding your Shrutebucks balance will be explained shortly. Your ShruteBucks balance at the end of each session directly affects payment you will receive at the end of the experiment. Specifically, the computer will randomly select two sessions as your payment sessions. Your ShruteBucks balances in payment sessions will be directly converted into your final payment in Canadian Dollars. Keep in mind that your payments will be determined by your decisions; so the more correct bets you make, the higher your payments will be. It is always in your interest to bet on outcomes that you deem likely, to increase your chance of receiving high payment in the end.</p>
+    {% next_button %}
+
+{% endblock %}

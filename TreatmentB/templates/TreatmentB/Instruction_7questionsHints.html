@@ -1,0 +1,26 @@
+<style>
+    img {
+        box-shadow: 10px 10px 5px grey;
+        } 
+</style>
+
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Prediction Tasks and "Rumours"
+{% endblock %}
+
+{% block content %}
+
+<h3>Prediction Tasks</h3>
+<p>Everyone in your group will face the same prediction task. At the beginning of each session, you will receive a clear description of the prediction tasks-- including context of the prediction task, possible outcomes etc. In addition, each of you will receive a rumour about the outcome of the event. Each prediction task will resemble the one given in example below. The outcome will be determined by computer randomly before the first character places the bet. Of course, the outcome will not be revealed until the end of the experiment.  </p>
+
+<h3>"Rumours"</h3>
+<p> You may also observe decisions made by other players in your group before you submit your predictions. In addition, you will receive information relevant to the prediction task, which is called a "rumour". This resembles "rumours" in our daily life, in the sense that it contains relevant information about the outcome, but they are not always correct about the outcomes. For each piece of rumour, you will be told exactly the generating process, from which you can infer relevant information and use that to your advantage. Remember that others will also receive similar rumours as yours; if you pay attention to other players' decisions, you may be able to infer information useful to help you make better predictions. Lastly, we want to stress that rumours in this experiment are not meant to be deceptive or inaccurate in this experiment.</p>
+
+    <img src="https://imgur.com/6Lx4TrU.jpg" width="1000px" />
+    
+    {% next_button %}
+    <p>(If the image is not loading properly, please right click on the image icon, and select "Open Image in New Tab".)</p>
+{% endblock %}
