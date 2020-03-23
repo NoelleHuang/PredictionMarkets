@@ -40,7 +40,11 @@ class Constants(BaseConstants):
 
     # the following model parameters are now configurable in admin page
     #liquidity = 1 
-    num_rounds = 2
+    num_rounds = 10
+
+    payoff_round = np.random.randint(low=2, high=num_rounds+1, size=1) 
+    # first round is practice round, so doesn't count towards payment
+    # low is inclusive, high is exclusive
     possible_states = ['Red', 'Green']
     signal_accuracy = 2/3
     random.seed (11)
@@ -117,6 +121,7 @@ class Player(BasePlayer):
     Red_share = models.FloatField(initial=0.0) 
     Green_share = models.FloatField(initial=0.0) 
     balance = models.FloatField(initial=Constants.round_initial_balance)
+    payment = models.FloatField(initial=0.0)
 
 
     def role(self):

@@ -142,9 +142,11 @@ class ResultsWaitPage(WaitPage):
 
     def after_all_players_arrive(self):
             for p in self.group.get_players():
-                 p.payoff = p.balance + p.Red_share*(self.subsession.true_state=="Red") + p.Green_share*(self.subsession.true_state=='Green')
+                 p.payment = p.balance + p.Red_share*(self.subsession.true_state=="Red") + p.Green_share*(self.subsession.true_state=='Green')
+                 if self.round_number == Constants.payoff_round:
+                     p.payoff = p.payment
                  #print(p.balance)
-                 #print(p.payoff)
+                 #print(p.payment)
         
     wait_for_all_groups = False
 
